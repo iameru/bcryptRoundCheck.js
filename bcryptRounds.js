@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const os = require("os");
 
 pw = "Our AverageE Joe'Zz Pasword123!";
 
@@ -47,4 +48,19 @@ function main(maxtime = 1234) {
   });
 }
 
+function mashineInfo() {
+  console.log(`OS: ${os.platform()}`);
+  console.log(`KERNEL: ${os.release()}`);
+
+  const cpuList = os.cpus().reduce((acc, cpu) => {
+    if (!acc.includes(cpu.model)) {
+      acc.push(cpu.model);
+    }
+    return acc;
+  }, []);
+
+  console.log(`CPU\'s: ${cpuList.join(" - ")}`);
+  console.log("-------------------------------");
+}
+mashineInfo();
 main();
